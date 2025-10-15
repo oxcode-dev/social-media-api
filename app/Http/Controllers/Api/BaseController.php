@@ -12,7 +12,7 @@ class BaseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    protected function confirmUser($user) :JsonResponse
+    protected function confirmUser($user) : JsonResponse
     {
         if (!$user) {
             return $this->sendError('Validation Error.', ['status' => 'failed', 'message' => 'user not found'], 419);       
@@ -23,7 +23,7 @@ class BaseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function sendResponse($result, $message) :JsonResponse
+    public function sendResponse($result, $message) : JsonResponse
     {
     	$response = [
             'success' => true,
