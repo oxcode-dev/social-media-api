@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\API\BaseController;
-// use App\Models\OtpCode;
+use App\Models\OtpCode;
 use App\Models\User;
 use Illuminate\Http\Request;
 
 class PasswordResetController extends BaseController
 {
-    public function forgot(Request $request) : \Illuminate\Http\JsonResponse
+    public function forgot(Request $request) //: \Illuminate\Http\JsonResponse
     {
         $data = $request->validate(['email' => 'required|email']);
 
@@ -67,7 +67,7 @@ class PasswordResetController extends BaseController
         );
     }
 
-    public function generateOtp(Request $request): \Illuminate\Http\JsonResponse
+    public function generateOtp(Request $request)//: \Illuminate\Http\JsonResponse
     {
         $data = $request->validate(['email' => 'required|email']);
 
