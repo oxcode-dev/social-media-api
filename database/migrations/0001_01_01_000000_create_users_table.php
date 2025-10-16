@@ -22,18 +22,10 @@ return new class extends Migration
             $table->string('password');
             $table->text('bio')->nullable();
             $table->text('avatar')->nullable();
+            $table->boolean('is_private')->default(false);
+            $table->boolean('verified')->default(false);
             $table->rememberToken();
             $table->timestamps();
-
-            username VARCHAR(50) UNIQUE,
-            email VARCHAR(100) UNIQUE,
-            password_hash TEXT,
-            full_name VARCHAR(100),
-            bio TEXT,
-            avatar_url TEXT,
-            website VARCHAR(255),
-            is_private BOOLEAN DEFAULT FALSE,
-            verified BOOLEAN DEFAULT FALSE,
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
