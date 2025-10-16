@@ -28,9 +28,9 @@ class LoginController extends BaseController
             return $this->sendError('Validation Error.', $validator->errors());       
         }
 
-        if(!User::where('email', $request->email)->where('role', 'CUSTOMER')->exists()){ 
-            return $this->sendError('These credentials do not match our records.', ['email'=> 'Invalid Credentials.']);  
-        } 
+        // if(!User::where('email', $request->email)->where('role', 'CUSTOMER')->exists()){ 
+        //     return $this->sendError('These credentials do not match our records.', ['email'=> 'Invalid Credentials.']);  
+        // } 
 
         if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){ 
             $user = Auth::user(); 
