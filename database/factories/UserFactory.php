@@ -31,6 +31,18 @@ class UserFactory extends Factory
             'two_factor_secret' => Str::random(10),
             'two_factor_recovery_codes' => Str::random(10),
             'two_factor_confirmed_at' => now(),
+
+            $table->string('username');
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->string('email')->unique();
+            $table->string('phone')->unique()->nullable();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('password');
+            $table->text('bio')->nullable();
+            $table->text('avatar')->nullable();
+            $table->boolean('is_private')->default(false);
+            $table->boolean('verified')->default(false);
         ];
     }
 
