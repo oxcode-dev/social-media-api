@@ -50,4 +50,4 @@ class RegisterController extends BaseController
    
         return $this->sendResponse($success, 'User register successfully.');
     }
-}
+}   
