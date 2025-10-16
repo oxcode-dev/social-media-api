@@ -13,13 +13,27 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->uuid('id')->primary();
+            $table->string('username');
             $table->string('first_name');
             $table->string('last_name');
             $table->string('email')->unique();
+            $table->string('phone')->unique()->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->text('bio')->nullable();
+            $table->text('avatar')->nullable();
             $table->rememberToken();
             $table->timestamps();
+
+            username VARCHAR(50) UNIQUE,
+            email VARCHAR(100) UNIQUE,
+            password_hash TEXT,
+            full_name VARCHAR(100),
+            bio TEXT,
+            avatar_url TEXT,
+            website VARCHAR(255),
+            is_private BOOLEAN DEFAULT FALSE,
+            verified BOOLEAN DEFAULT FALSE,
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
