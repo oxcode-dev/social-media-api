@@ -27,6 +27,8 @@ class User extends Authenticatable
         'email',
         'password',
         'phone',
+        'bio',
+        'avatar',
     ];
 
     // 'id' => fake()->uuid(),
