@@ -17,8 +17,9 @@ class RegisterController extends BaseController
     public function register(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'first_name' => 'required',
-            'last_name' => 'required',
+            // 'first_name' => 'required',
+            // 'last_name' => 'required',
+            'name' => 'required',
             'email' => 'required|string|lowercase|email|max:255|unique:'.User::class,
             'password' => 'required',
             'confirm_password' => 'required|same:password',
