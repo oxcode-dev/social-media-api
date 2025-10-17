@@ -69,7 +69,6 @@ class User extends Authenticatable
         return Attribute::get(fn (): string => "$this->first_name $this->last_name");
     }
 
-
     // Users this user is following
     public function followings(): BelongsToMany
     {
