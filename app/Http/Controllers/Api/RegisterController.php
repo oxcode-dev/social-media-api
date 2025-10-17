@@ -48,6 +48,8 @@ class RegisterController extends BaseController
         $success['avatar'] =  $user->avatar;
         $success['name'] =  $user->name;
         $success['id'] =  $user->id;
+        $success['is_private'] =  $user->is_private;
+        $success['verified'] =  $user->verified;
 
         event(new Registered($user));
    
