@@ -20,17 +20,4 @@ class Follower extends Model
         'follower_id',
         'following_id',
     ];
-
-     /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
-    protected function casts(): array
-    {
-        return [
-            'follower_id' => 'uuid',
-            'following_id' => 'uuid',
-        ];
-    }
 }

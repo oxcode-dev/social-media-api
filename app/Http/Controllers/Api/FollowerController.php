@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
+
+use App\Http\Controllers\API\BaseController;
 
 use Illuminate\Http\Request;
 
-class FollowerController extends Controller
+class FollowerController extends BaseController
 {
     //
 }

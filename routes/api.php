@@ -7,6 +7,7 @@ use App\Http\Controllers\API\LoginController;
 use App\Http\Controllers\API\RegisterController;
 use App\Http\Controllers\API\PasswordResetController;
 use App\Http\Controllers\API\ProfileController;
+use App\Models\Follower;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -14,7 +15,10 @@ Route::get('/user', function (Request $request) {
 
 
 Route::get('/test', function () {
-    return ['user' => User::all()];
+    return [
+        'user' => User::all(),
+        'follower' => Follower::all(),
+    ];
 });//->middleware('auth:sanctum');
 
 Route::prefix('auth')->group(function () {
