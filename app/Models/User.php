@@ -11,6 +11,7 @@ use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use App\Notifications\ResetPasswordNotification;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class User extends Authenticatable
 {
@@ -66,6 +67,31 @@ class User extends Authenticatable
     public function name(): Attribute
     {
         return Attribute::get(fn (): string => "$this->first_name $this->last_name");
+    }
+
+
+    // Users this user is following
+    public function followings(): BelongsToMany
+    {
+        return $this->belongsToMany(
+            User::class,
+            'followers',
+            'follower_id',
+            'following_id'
+        )
+        ->withTimestamps();
+    }
+
+    // Users following this user
+    public function followers(): BelongsToMany
+    {
+        return $this->belongsToMany(
+            User::class,
+            'followers',
+            'following_id',
+            'follower_id'
+        )
+        ->withTimestamps();
     }
 
     public static function search($query)
