@@ -27,6 +27,7 @@ Route::prefix('auth')->group(function () {
 });
 
 Route::prefix('profile')->group(function () {
+    
     Route::get('/', [ProfileController::class, 'index'])->name('api.profile_update');
     Route::post('/', [ProfileController::class, 'update'])->name('api.profile_update');
 })->middleware('auth:sanctum');

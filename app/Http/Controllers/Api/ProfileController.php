@@ -16,9 +16,9 @@ class ProfileController extends BaseController
     public function index (Request $request) {
         $user = $request->user();
 
-        if (!$user) {
-            return $this->sendError('Validation Error.', ['status' => 'failed', 'message' => 'user not found'], 419);       
-        }
+        // if (!$user) {
+        //     return $this->sendError('Validation Error.', ['status' => 'failed', 'message' => 'user not found'], 419);       
+        // }
 
         return $this->sendResponse($user, 'User Profile Updated Successfully.');
     }
