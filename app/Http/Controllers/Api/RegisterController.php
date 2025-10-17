@@ -39,7 +39,7 @@ class RegisterController extends BaseController
         $user = User::create($input);
 
         $success['token'] =  $user->createToken('MyApp')->plainTextToken;
-        // $success['name'] =  $user->name;
+        $success['name'] =  $user->name;
         $success['username'] =  $user->username;
         $success['first_name'] =  $user->first_name;
         $success['last_name'] =  $user->last_name;
