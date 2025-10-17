@@ -37,7 +37,8 @@ class ProfileController extends BaseController
         $request->user()->fill($input);
         $request->user()->save();
 
-        return $this->sendResponse(new UserResource($user), 'User Profile Updated Successfully.');
+        return $this->sendResponse($user, 'User Profile Updated Successfully.');
+        // return $this->sendResponse(new UserResource($user), 'User Profile Updated Successfully.');
     }
 
     public function changePassword(Request $request)
