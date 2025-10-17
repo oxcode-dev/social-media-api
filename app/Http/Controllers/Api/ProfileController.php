@@ -92,10 +92,6 @@ class ProfileController extends BaseController
         if($request->user() !== null) {
             $user = $request->user();
 
-            $user->addresses()->delete();
-            $user->orders()->delete();
-            $user->wishlists()->delete();
-
             $user->delete();
 
             $request->user()->tokens()->delete();
