@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use App\Notifications\ResetPasswordNotification;
 
 class User extends Authenticatable
@@ -56,6 +57,11 @@ class User extends Authenticatable
             'password' => 'hashed',
             'two_factor_confirmed_at' => 'datetime',
         ];
+    }
+
+    public function name(): Attribute
+    {
+        return Attribute::get(fn (): string => "$this->first_name $this->last_name");
     }
 
     public static function search($query)
