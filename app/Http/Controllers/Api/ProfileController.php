@@ -25,6 +25,7 @@ class ProfileController extends BaseController
 
     public function update(Request $request)
     {
+        return $request->all();
         $user = $request->user();
 
         if (!$user) {
