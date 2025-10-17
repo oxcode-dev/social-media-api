@@ -13,6 +13,16 @@ use Illuminate\Validation\Rules\Password;
 
 class ProfileController extends BaseController
 {
+    public function index (Request $request) {
+        $user = $request->user();
+
+        if (!$user) {
+            return $this->sendError('Validation Error.', ['status' => 'failed', 'message' => 'user not found'], 419);       
+        }
+
+        return $this->sendResponse($user, 'User Profile Updated Successfully.');
+    }
+
     public function update(Request $request)
     {
         $user = $request->user();
@@ -22,10 +32,12 @@ class ProfileController extends BaseController
         }
 
         $validator = Validator::make($request->all(), [
-            'first_name' => ['required', 'string', 'max:255'],
-            'last_name' => ['required', 'string', 'max:255'],
-            'email' => [ 'required', 'string','lowercase', 'email', 'max:255', 'unique:users,email,' . $user->id],
-            'phone' => ['required', 'string', 'max:255'],
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'username' => 'required',
+            'email' => 'required|string|lowercase|email|max:255|unique:'.User::class,
+            'phone' => 'nullable',
+            'bio' => 'nullable',
         ]);
    
         if($validator->fails()){
