@@ -25,7 +25,6 @@ class ProfileController extends BaseController
 
     public function update(Request $request)
     {
-        // return $request->all();
         $user = $request->user();
 
         if (!$user) {
@@ -36,7 +35,7 @@ class ProfileController extends BaseController
             'first_name' => 'required',
             'last_name' => 'required',
             'username' => 'required',
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', Rule::unique('users')->ignore($user->id, 'user_id')],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', Rule::unique(User::class)->ignore($user->id, 'id')],
             'phone' => 'nullable',
             'bio' => 'nullable',
         ]);
