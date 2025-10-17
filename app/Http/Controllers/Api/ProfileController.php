@@ -25,24 +25,24 @@ class ProfileController extends BaseController
 
     public function update(Request $request)
     {
-        return $request->all();
+        // return $request->all();
         $user = $request->user();
 
         if (!$user) {
-            return $this->sendError('Validation Error.', ['status' => 'failed', 'message' => 'user not found'], 419);       
+            return $this->sendError('Error Occurred.', ['status' => 'failed', 'message' => 'user not found'], 419);       
         }
 
         $validator = Validator::make($request->all(), [
             'first_name' => 'required',
             'last_name' => 'required',
             'username' => 'required',
-            'email' => 'required|string|lowercase|email|max:255|unique:'.User::class,
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', Rule::unique('users')->ignore($user->id, 'user_id')],
             'phone' => 'nullable',
             'bio' => 'nullable',
         ]);
    
         if($validator->fails()){
-            return $this->sendError('Error Occurred.', $validator->errors());       
+            return $this->sendError('Validation Error.', $validator->errors());       
         }
 
         $input = $request->all();
