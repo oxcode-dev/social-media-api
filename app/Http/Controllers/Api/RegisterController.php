@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Api\BaseController as BaseController;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Auth\Events\Registered;
 
 class RegisterController extends BaseController
 {
@@ -47,6 +48,8 @@ class RegisterController extends BaseController
         $success['avatar'] =  $user->avatar;
         $success['name'] =  $user->name;
         $success['id'] =  $user->id;
+
+        event(new Registered($user));
    
         return $this->sendResponse($success, 'User register successfully.');
     }
