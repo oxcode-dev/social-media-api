@@ -26,8 +26,7 @@ Route::prefix('auth')->group(function () {
     Route::post('/reset-password/generate-otp', [PasswordResetController::class, 'generateOtp'])->name('api.generate_otp');
 });
 
-Route::prefix('profile')->group(function () {
-    
+Route::middleware(['auth:sanctum'])->prefix('profile')->group(function () {
     Route::get('/', [ProfileController::class, 'index'])->name('api.profile_update');
     Route::post('/', [ProfileController::class, 'update'])->name('api.profile_update');
 })->middleware('auth:sanctum');

@@ -40,6 +40,8 @@ class LoginController extends BaseController
             $success['avatar'] =  $user->avatar;
             $success['name'] =  $user->name;
             $success['id'] =  $user->id;
+            $success['is_private'] =  $user->is_private;
+            $success['verified'] =  $user->verified;
    
             return $this->sendResponse($success, 'User login successfully.');
         } 
