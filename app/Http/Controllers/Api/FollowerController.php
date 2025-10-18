@@ -58,4 +58,30 @@ class FollowerController extends BaseController
 
         return $this->sendResponse([], 'You are not following this user!!!.');
     }
+
+    public function getFollowers(Request $request, $id)
+    {
+        $authUser = $request->user();
+
+        if (!$authUser) {
+            return $this->sendError('Validation Error.', ['status' => 'failed', 'message' => 'user not found'], 419);       
+        }
+
+        $user = User::with(['followers'])->whereId($id)->firstOrFail();
+
+        return $user;
+    }
+
+    public function getFollowings(Request $request, $id)
+    {
+        $authUser = $request->user();
+
+        if (!$authUser) {
+            return $this->sendError('Validation Error.', ['status' => 'failed', 'message' => 'user not found'], 419);       
+        }
+
+        $user = User::with(['followings'])->whereId($id)->firstOrFail();
+
+        return $user;
+    }
 }

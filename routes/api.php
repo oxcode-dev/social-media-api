@@ -39,4 +39,6 @@ Route::middleware(['auth:sanctum'])->prefix('profile')->group(function () {
 Route::middleware(['auth:sanctum'])->prefix('users')->group(function () {
     Route::post('/{id}/follow', [FollowerController::class, 'store'])->name('api.user_follower');
     Route::delete('/{id}/follow', [FollowerController::class, 'destroy'])->name('api.user_follower');
+    Route::get('/{id}/followers', [FollowerController::class, 'getFollowers'])->name('api.get_followers');
+    Route::get('/{id}/followings', [FollowerController::class, 'getFollowings'])->name('api.user_followings');
 });
