@@ -69,7 +69,7 @@ class FollowerController extends BaseController
 
         $user = User::with(['followers'])->whereId($id)->firstOrFail();
 
-        return $user;
+        return $this->sendResponse($user->followers, 'Followers Fetched Successfully.');
     }
 
     public function getFollowings(Request $request, $id)
@@ -82,6 +82,6 @@ class FollowerController extends BaseController
 
         $user = User::with(['followings'])->whereId($id)->firstOrFail();
 
-        return $user;
+        return $this->sendResponse($user->followings, 'Followings Fetched Successfully.');
     }
 }
