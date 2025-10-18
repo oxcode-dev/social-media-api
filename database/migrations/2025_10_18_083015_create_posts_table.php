@@ -12,8 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('posts', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
+            $table->foreignUuid('user_id');
+            $table->text('content')->nullable();
+            $table->text('media_url')->nullable();
+            $table->enum('media_type', ['image', 'video', 'none'])->default('none');
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
